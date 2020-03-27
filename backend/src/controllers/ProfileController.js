@@ -1,0 +1,11 @@
+'use strict';
+const conection = require('../database/conection')
+
+module.exports = {
+    async index(request,  response) {
+        const ong_id = request.headers.autorization;
+        const incidents = await conection('incidents').where('ong_id', ong_id).select('*');
+
+        return response.json(incidents);
+    },
+}
